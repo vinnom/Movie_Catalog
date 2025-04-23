@@ -1,0 +1,18 @@
+#file: noinspection SpellCheckingInspection
+spring:
+  application:
+    name: venturusflix
+  datasource:
+    url: jdbc:mysql://localhost:3306/movies_database
+    username: movieapi
+    password: movieapi
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        jdbc:
+          time_zone: UTC
