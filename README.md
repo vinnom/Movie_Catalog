@@ -16,8 +16,8 @@ Este projeto é uma API REST para gerenciamento de filmes e seus gêneros, const
 
 1. **Clone o repositório:**
    ```bash
-   git https://github.com/vinnom/Movie_Catalog.git venturusflix
-   cd Movie_Catalog
+   git clone https://github.com/vinnom/Movie_Catalog.git venturusflix
+   cd venturusflix
    ```
 2. ## Criação do Banco de Dados
 
