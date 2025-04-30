@@ -31,5 +31,22 @@ conforme seu sistema operacional:
 Após instalar o MySQL, execute o comando abaixo para criar o banco:
 
 ```sql
-CREATE DATABASE movies_database;
+CREATE DATABASE movies_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'movieapi'@'localhost' IDENTIFIED BY 'movieapi';
+GRANT ALL PRIVILEGES ON movies_database.* TO 'movieapi'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+Caso queira confirmar as info sobre o usuário "movieapi":
+```sql
+SHOW GRANTS FOR 'movieapi'@'localhost';
+```
+```plaintext
+mysql> SHOW GRANTS FOR 'movieapi'@'localhost';
++-----------------------------------------------------------------------+
+| Grants for movieapi@localhost                                         |
++-----------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `movieapi`@`localhost`                          |
+| GRANT ALL PRIVILEGES ON `movies_database`.* TO `movieapi`@`localhost` |
++-----------------------------------------------------------------------+
 ```
