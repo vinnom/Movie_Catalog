@@ -50,3 +50,119 @@ mysql> SHOW GRANTS FOR 'movieapi'@'localhost';
 | GRANT ALL PRIVILEGES ON `movies_database`.* TO `movieapi`@`localhost` |
 +-----------------------------------------------------------------------+
 ```
+
+# Documentação da API - Movies API
+
+## Endpoints
+
+### **1. Listar todos os filmes**
+
+**GET** `/movies`
+
+- **Descrição:** Retorna uma lista paginada de todos os filmes.
+- **Parâmetros de Query (opcional):**
+   - `page` (int): Número da página.
+   - `size` (int): Tamanho da página.
+   - `sort` (string): Campo para ordenação.
+- **Resposta:**
+   - **200 OK:** Lista de filmes no formato JSON.
+
+---
+
+### **2. Criar um novo filme**
+
+**POST** `/movies`
+
+- **Descrição:** Adiciona um novo filme ao banco de dados.
+- **Corpo da Requisição (JSON):**
+  ```json
+  {
+    "id": 1,
+    "title": "Título do Filme",
+    "maturityRating": "Livre",
+    "genres": ["Ação", "Aventura"],
+    "releaseDate": "2023-01-01",
+    "duration": "2h",
+    "posterImageUrl": "http://exemplo.com/poster.jpg"
+  }
+  ```
+
+- **Resposta:**
+   - **201 Created:** Filme criado com sucesso.
+
+---
+
+### **3. Criar múltiplos filmes (Batch)**
+
+**POST** `/movies/batch`
+
+- **Descrição:** Adiciona uma lista de filmes ao banco de dados.
+- **Corpo da Requisição (JSON):**
+  ```json
+  [
+    {
+      "id": 1,
+      "title": "Título do Filme 1",
+      "maturityRating": "Livre",
+      "genres": ["Ação"],
+      "releaseDate": "2023-01-01",
+      "duration": "2h",
+      "posterImageUrl": "http://exemplo.com/poster1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Título do Filme 2",
+      "maturityRating": "12+",
+      "genres": ["Drama"],
+      "releaseDate": "2023-02-01",
+      "duration": "1h 30min",
+      "posterImageUrl": "http://exemplo.com/poster2.jpg"
+    }
+  ]
+  ```
+- **Resposta:**
+   - **201 Created:** Filmes criados com sucesso.
+
+---
+
+### **4. Atualizar um filme**
+
+**PUT** `/movies`
+
+- **Descrição:** Atualiza os dados de um filme existente.
+- **Corpo da Requisição (JSON):**
+  ```json
+  {
+    "id": 1,
+    "title": "Novo Título",
+    "maturityRating": "16+",
+    "genres": ["Ação", "Suspense"],
+    "releaseDate": "2023-05-01",
+    "duration": "2h 15min",
+    "posterImageUrl": "http://exemplo.com/novo-poster.jpg"
+  }
+  ```
+- **Resposta:**
+   - **200 OK:** Filme atualizado com sucesso.
+
+---
+
+### **5. Deletar um filme**
+
+**DELETE** `/movies/{id}`
+
+- **Descrição:** Remove um filme do banco de dados.
+- **Parâmetros de URL:**
+   - `id` (Long): ID do filme a ser deletado.
+- **Resposta:**
+   - **204 No Content:** Filme deletado com sucesso.
+
+---
+
+### **6. Endpoint de teste**
+
+**GET** `/hello`
+
+- **Descrição:** Retorna uma mensagem de teste.
+- **Resposta:**
+   - **200 OK:** `"Hello, Fwk General Colleague =D"`
